@@ -1,0 +1,76 @@
+{% extends "course_page.html" %}
+
+{% block title %}Python Test{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Тест по Python</h2>
+
+  <form method="post">
+  {% csrf_token %}
+
+  <!-- Вопрос 1 -->
+  <p><strong>1. Что выведет код?</strong></p>
+  <pre>print(2 + 3)</pre>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="q1" value="3">
+    <label class="form-check-label">3</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="q1" value="5">
+    <label class="form-check-label">5</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="q1" value="23">
+    <label class="form-check-label">23</label>
+  </div>
+
+  <hr>
+
+  <!-- Вопрос 2 -->
+  <p><strong>2. Что выведет код?</strong></p>
+  <pre>
+    a = 10
+    b = 20
+    if a > b:
+        print("a больше b")
+    else:
+        print("b больше a")
+  </pre>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="q2" value="a">
+    <label class="form-check-label">a больше b</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="q2" value="equal">
+    <label class="form-check-label">a равно b</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="q2" value="b">
+    <label class="form-check-label">b больше a</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-4">
+    Проверить
+  </button>
+</form>
+
+
+
+
+
+  {% if result %}
+    <div class="alert alert-info mt-4">
+      {{ result }}
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

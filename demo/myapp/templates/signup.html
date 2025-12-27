@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<style>
+  .auth-container {
+    min-height: 80vh;
+    display: flex;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .auth-form {
+    flex: 1;
+    background: #fff;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .auth-image {
+    flex: 1;
+    background: linear-gradient(135deg, #7e5bef 0%, #b084fc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .auth-image img {
+    width: 80%;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+  .btn-gradient {
+    background: linear-gradient(90deg, #7e5bef 0%, #b084fc 100%);
+    border: none;
+    transition: background 0.3s ease;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #b084fc 0%, #7e5bef 100%);
+  }
+  @media (max-width: 768px) {
+    .auth-container {
+      flex-direction: column;
+      min-height: auto;
+      border-radius: 0.5rem;
+    }
+    .auth-image {
+      display: none; /* Скрываем картинку на мобилках */
+    }
+  }
+</style>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="auth-container" style="max-width: 900px; width: 100%;">
+    <!-- Левая колонка: форма -->
+    <div class="auth-form">
+      <h2 class="text-center mb-4" style="font-weight: 700; color: #4b3ca7;">Sign Up</h2>
+
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="email" class="form-label" style="font-weight: 600;">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label" style="font-weight: 600;">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+        </div>
+
+        <button type="submit" class="btn btn-gradient w-100 mb-3">Sign Up</button>
+      </form>
+
+      <p class="text-center text-muted mt-3">
+        Already have an account? <a href="{% url 'login' %}" style="color: #7e5bef; text-decoration: none;">Log in</a>
+      </p>
+    </div>
+
+    <!-- Правая колонка: картинка или градиент -->
+    <div class="auth-image">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Signup image" />
+    </div>
+  </div>
+</div>
+{% endblock %}

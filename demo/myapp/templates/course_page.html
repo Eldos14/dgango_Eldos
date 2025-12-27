@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Курс HTML{% endblock %}
+
+{% block content %}
+
+
+{{ course.content|safe }}
+
+<div class="text-center mt-4">
+  <a href="{% url 'test_python' %}" class="btn btn-primary btn-lg">
+    Пройти тест по Python
+  </a>
+  
+</div>
+
+
+
+
+{% endblock %}

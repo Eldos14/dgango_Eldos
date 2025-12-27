@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<style>
+  .card {
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  .card-img-top {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    height: 280px;
+    object-fit: cover;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row g-4">
+   
+    {% for course in courses %}
+    <div class="col-md-3 col-sm-6">
+      <div class="card">
+        <a href="{% url 'course_page' course.id %}">
+
+        <img src="{{ course.img }}" class="card-img-top" alt="HTML"/>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ course.title }}</h5>
+          <p class="card-text">{{ course.description }}</p>
+        </div>
+      </div>
+    </div>
+    
+    
+    {% endfor %}
+
+   
+  </div>
+</div>
+
+{% endblock %}

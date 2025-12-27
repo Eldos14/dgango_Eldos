@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+  .login-container {
+    min-height: 80vh;
+    display: flex;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .login-form {
+    flex: 1;
+    background: #fff;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .login-image {
+    flex: 1;
+    background: linear-gradient(135deg, #7e5bef 0%, #b084fc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-image img {
+    width: 80%;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+  .btn-gradient {
+    background: linear-gradient(90deg, #7e5bef 0%, #b084fc 100%);
+    border: none;
+    transition: background 0.3s ease;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #b084fc 0%, #7e5bef 100%);
+  }
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      min-height: auto;
+      border-radius: 0.5rem;
+    }
+    .login-image {
+      display: none; /* Скрываем картинку на мобилках */
+    }
+  }
+</style>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="login-container" style="max-width: 900px; width: 100%;">
+    <!-- Левая колонка: форма -->
+    <div class="login-form">
+      <h2 class="text-center mb-4" style="font-weight: 700; color: #4b3ca7;">Log In</h2>
+      <p class="text-center text-muted mb-4">Welcome back! Please enter your details</p>
+
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="email" class="form-label" style="font-weight: 600;">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label" style="font-weight: 600;">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="remember" name="remember">
+          <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+
+        <button type="submit" class="btn btn-gradient w-100 mb-3">Log In</button>
+      </form>
+
+      <div class="text-center">
+        <a href="#" style="color: #7e5bef; text-decoration: none;">Forgot password?</a>
+      </div>
+      <hr>
+      <div class="text-center text-muted mt-3">Or Continue With</div>
+      <div class="d-flex justify-content-center gap-3 mt-3">
+        <button class="btn btn-outline-secondary" style="width: 48%;">
+          <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google" /> Google
+        </button>
+        <button class="btn btn-outline-secondary" style="width: 48%;">
+          <img src="https://img.icons8.com/color/24/facebook-new.png" alt="Facebook" /> Facebook
+        </button>
+      </div>
+
+      <p class="text-center text-muted mt-4">
+        Don't have an account? <a href="{% url 'signup' %}" style="color: #7e5bef; text-decoration: none;">Sign up</a>
+      </p>
+    </div>
+
+    <!-- Правая колонка: картинка или градиент -->
+    <div class="login-image">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Fitness image" />
+    </div>
+  </div>
+</div>
+{% endblock %}
